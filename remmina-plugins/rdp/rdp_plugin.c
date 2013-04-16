@@ -33,6 +33,7 @@
 #include <freerdp/constants.h>
 #include <freerdp/client/cliprdr.h>
 #include <freerdp/client/channels.h>
+#include <freerdp/utils/event.h>
 
 #define REMMINA_RDP_FEATURE_TOOL_REFRESH		1
 #define REMMINA_RDP_FEATURE_SCALE			2
@@ -424,11 +425,11 @@ static int remmina_rdp_receive_channel_data(freerdp* instance, int channelId, UI
 	return freerdp_channels_data(instance, channelId, data, size, flags, total_size);
 }
 
-void remmina_rdp_channels_process_event(RemminaProtocolWidget* gp, RDP_EVENT* event)
+void remmina_rdp_channels_process_event(RemminaProtocolWidget* gp, wMessage* event)
 {
-	switch (event->event_class)
+	switch (GetMessageClass(event->id))
 	{
-		case RDP_EVENT_CLASS_CLIPRDR:
+		case CliprdrChannel_Class:
 			remmina_rdp_channel_cliprdr_process(gp, event);
 			break;
 	}
@@ -446,7 +447,7 @@ static void remmina_rdp_main_loop(RemminaProtocolWidget* gp)
 	fd_set rfds_set;
 	fd_set wfds_set;
 	rfContext* rfi;
-	RDP_EVENT* event;
+	wMessage* event;
 
 	memset(rfds, 0, sizeof(rfds));
 	memset(wfds, 0, sizeof(wfds));
