@@ -74,10 +74,6 @@ struct rf_context
 	RemminaProtocolWidget* protocol_widget;
 
 	/* main */
-	rdpSettings* settings;
-	freerdp* instance;
-	rdpChannels* channels;
-
 	pthread_t thread;
 	pthread_mutex_t mutex;
 	gboolean scale;
@@ -86,9 +82,9 @@ struct rf_context
 	GMutex* gmutex;
 	GCond* gcond;
 
-	RDP_PLUGIN_DATA rdpdr_data[5];
-	RDP_PLUGIN_DATA drdynvc_data[5];
-	RDP_PLUGIN_DATA rdpsnd_data[5];
+//	RDP_PLUGIN_DATA rdpdr_data[5];
+//	RDP_PLUGIN_DATA drdynvc_data[5];
+//	RDP_PLUGIN_DATA rdpsnd_data[5];
 	gchar rdpsnd_options[20];
 
 	RFX_CONTEXT* rfx_context;

@@ -39,8 +39,8 @@ static void rf_desktop_resize(rdpContext* context)
 
 	LOCK_BUFFER(TRUE)
 
-	remmina_plugin_service->protocol_plugin_set_width(gp, rfi->settings->DesktopWidth);
-	remmina_plugin_service->protocol_plugin_set_height(gp, rfi->settings->DesktopHeight);
+	remmina_plugin_service->protocol_plugin_set_width(gp, context->settings->DesktopWidth);
+	remmina_plugin_service->protocol_plugin_set_height(gp, context->settings->DesktopHeight);
 
 	UNLOCK_BUFFER(TRUE)
 

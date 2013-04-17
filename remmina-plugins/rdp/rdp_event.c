@@ -31,6 +31,7 @@
 static void remmina_rdp_event_on_focus_in(GtkWidget* widget, GdkEventKey* event, RemminaProtocolWidget* gp)
 {
 	rfContext* rfi;
+        rdpContext* rdp;
 	rdpInput* input;
 	GdkModifierType state;
 #if GTK_VERSION == 3
@@ -39,7 +40,8 @@ static void remmina_rdp_event_on_focus_in(GtkWidget* widget, GdkEventKey* event,
 #endif
 
 	rfi = GET_DATA(gp);
-	input = rfi->instance->input;
+        rdp = &rfi->_p;
+	input = rdp->instance->input;
 	UINT32 toggle_keys_state = 0;
 
 #if GTK_VERSION == 3
